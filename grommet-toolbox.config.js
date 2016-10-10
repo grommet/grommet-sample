@@ -12,7 +12,6 @@ export default {
   mainJs: 'src/js/index.js',
   mainScss: 'src/scss/index.scss',
   devServerPort: 9000,
-  scsslint: true,
   alias: {
     'grommet/scss': path.resolve(__dirname, '../grommet/src/scss'),
     'grommet': path.resolve(__dirname, '../grommet/src/js')
