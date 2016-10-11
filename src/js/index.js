@@ -3,6 +3,7 @@ import '../scss/index.scss';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import App from 'grommet/components/App';
+import Anchor from 'grommet/components/Anchor';
 import Header from 'grommet/components/Header';
 import Footer from 'grommet/components/Footer';
 import Title from 'grommet/components/Title';
@@ -12,7 +13,7 @@ class Main extends Component {
   render () {
     return (
       <App centered={false}>
-        <Header direction="row" justify="between" large={true}
+        <Header direction="row" justify="between"
           pad={{horizontal: 'medium'}}>
           <Title>Todo App</Title>
         </Header>
@@ -20,7 +21,7 @@ class Main extends Component {
         <Footer primary={true} appCentered={true} direction="column"
           align="center" pad="small" colorIndex="grey-1">
           <p>
-            Build your ideas with <a href="http://grommet.io" target="_blank">Grommet</a>!
+            Build your ideas with <Anchor href="http://grommet.io" target="_blank">Grommet</Anchor>!
           </p>
         </Footer>
       </App>
