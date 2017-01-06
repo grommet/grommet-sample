@@ -186,7 +186,7 @@ exports[`test TodoAppDashboard renders 1`] = `
       tabIndex={undefined}>
       <h3
         className="grommetux-heading">
-        My Tasks2
+        My Tasks
       </h3>
       <ul
         className="grommetux-list"

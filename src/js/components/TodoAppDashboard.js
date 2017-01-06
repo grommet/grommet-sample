@@ -151,7 +151,7 @@ export default class TodoAppDashboard extends Component {
             </Box>
           </Box>
           <Box basis='2/3' pad='medium'>
-            <Heading tag='h3'>My Tasks2</Heading>
+            <Heading tag='h3'>My Tasks</Heading>
             <List>
               {tasks}
             </List>
