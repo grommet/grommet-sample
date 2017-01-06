@@ -1,0 +1,221 @@
+exports[`test TodoAppDashboard renders 1`] = `
+<section
+  className="grommetux-box grommetux-box--direction-column grommetux-box--responsive grommetux-box--flex grommetux-box--pad-vertical-medium grommetux-section"
+  id={undefined}
+  onClick={undefined}
+  role={undefined}
+  style={Object {}}
+  tabIndex={undefined}>
+  <a
+    aria-hidden="true"
+    className="grommetux-skip-link-anchor"
+    id="skip-link-main_content"
+    tabIndex="-1">
+    Main Content
+  </a>
+  <div
+    className="grommetux-box grommetux-box--direction-row grommetux-box--responsive grommetux-box--pad-none"
+    id={undefined}
+    onClick={undefined}
+    role={undefined}
+    style={Object {}}
+    tabIndex={undefined}>
+    <div
+      className="grommetux-box grommetux-box--direction-column grommetux-box--align-center grommetux-box--responsive grommetux-box--basis-1-3 grommetux-box--pad-none"
+      id={undefined}
+      onClick={undefined}
+      role={undefined}
+      style={Object {}}
+      tabIndex={undefined}>
+      <div
+        className="grommetux-meter grommetux-meter--circle grommetux-meter--count-3">
+        <div
+          className="grommetux-meter__value-container">
+          <div
+            className="grommetux-meter__graphic-container">
+            <svg
+              aria-label="Circle Meter. , Value: 0, Max: 100"
+              className="grommetux-meter__graphic"
+              height={192}
+              onBlur={[Function]}
+              onFocus={[Function]}
+              preserveAspectRatio="xMidYMid meet"
+              role="group"
+              tabIndex="0"
+              viewBox="0 0 192 192"
+              width={192}>
+              <g
+                className="grommetux-meter__tracks">
+                <g>
+                  <path
+                    className="grommetux-meter__slice"
+                    d="M 96.0146607656 179.9999987206 A 84.0000000000 84.0000000000 0 1 0 96.0000000000 180.0000000000"
+                    data-index={0}
+                    onBlur={[Function]}
+                    onFocus={[Function]} />
+                  <path
+                    className="grommetux-meter__hot"
+                    d="M 96.0146607656 179.9999987206 A 84.0000000000 84.0000000000 0 1 0 96.0000000000 180.0000000000"
+                    fill="none"
+                    onClick={undefined}
+                    onMouseOut={[Function]}
+                    onMouseOver={[Function]} />
+                </g>
+                <g>
+                  <path
+                    className="grommetux-meter__slice"
+                    d="M 96.0104719755 155.9999990861 A 60.0000000000 60.0000000000 0 1 0 96.0000000000 156.0000000000"
+                    data-index={1}
+                    onBlur={[Function]}
+                    onFocus={[Function]} />
+                  <path
+                    className="grommetux-meter__hot"
+                    d="M 96.0104719755 155.9999990861 A 60.0000000000 60.0000000000 0 1 0 96.0000000000 156.0000000000"
+                    fill="none"
+                    onClick={undefined}
+                    onMouseOut={[Function]}
+                    onMouseOver={[Function]} />
+                </g>
+                <g>
+                  <path
+                    className="grommetux-meter__slice"
+                    d="M 96.0062831853 131.9999994517 A 36.0000000000 36.0000000000 0 1 0 96.0000000000 132.0000000000"
+                    data-index={2}
+                    onBlur={[Function]}
+                    onFocus={[Function]} />
+                  <path
+                    className="grommetux-meter__hot"
+                    d="M 96.0062831853 131.9999994517 A 36.0000000000 36.0000000000 0 1 0 96.0000000000 132.0000000000"
+                    fill="none"
+                    onClick={undefined}
+                    onMouseOut={[Function]}
+                    onMouseOver={[Function]} />
+                </g>
+              </g>
+              <g
+                className="grommetux-meter__values">
+                <g
+                  aria-label="0"
+                  role="img">
+                  <path
+                    className="grommetux-meter__slice grommetux-color-index-critical"
+                    d="M 96.0000000000 180.0000000000 A 84.0000000000 84.0000000000 0 0 0 96.0000000000 180.0000000000"
+                    data-index={0}
+                    onBlur={[Function]}
+                    onFocus={[Function]} />
+                  <path
+                    className="grommetux-meter__hot"
+                    d="M 96.0000000000 180.0000000000 A 84.0000000000 84.0000000000 0 0 0 96.0000000000 180.0000000000"
+                    fill="none"
+                    onClick={undefined}
+                    onMouseOut={[Function]}
+                    onMouseOver={[Function]} />
+                </g>
+                <g
+                  aria-label="0"
+                  role="img">
+                  <path
+                    className="grommetux-meter__slice grommetux-color-index-warning"
+                    d="M 96.0000000000 156.0000000000 A 60.0000000000 60.0000000000 0 0 0 96.0000000000 156.0000000000"
+                    data-index={1}
+                    onBlur={[Function]}
+                    onFocus={[Function]} />
+                  <path
+                    className="grommetux-meter__hot"
+                    d="M 96.0000000000 156.0000000000 A 60.0000000000 60.0000000000 0 0 0 96.0000000000 156.0000000000"
+                    fill="none"
+                    onClick={undefined}
+                    onMouseOut={[Function]}
+                    onMouseOver={[Function]} />
+                </g>
+                <g
+                  aria-label="0"
+                  role="img">
+                  <path
+                    className="grommetux-meter__slice grommetux-color-index-ok"
+                    d="M 96.0000000000 132.0000000000 A 36.0000000000 36.0000000000 0 0 0 96.0000000000 132.0000000000"
+                    data-index={2}
+                    onBlur={[Function]}
+                    onFocus={[Function]} />
+                  <path
+                    className="grommetux-meter__hot"
+                    d="M 96.0000000000 132.0000000000 A 36.0000000000 36.0000000000 0 0 0 96.0000000000 132.0000000000"
+                    fill="none"
+                    onClick={undefined}
+                    onMouseOut={[Function]}
+                    onMouseOver={[Function]} />
+                </g>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div
+        className="grommetux-box grommetux-box--direction-row grommetux-box--justify-between grommetux-box--align-center grommetux-box--pad-none"
+        id={undefined}
+        onClick={undefined}
+        role={undefined}
+        style={Object {}}
+        tabIndex={undefined}>
+        <div
+          className="grommetux-value grommetux-value--align-center">
+          <div
+            className="grommetux-value__annotated">
+            <span
+              className="grommetux-value__value">
+              0
+            </span>
+            <span
+              className="grommetux-value__units">
+              Tasks
+            </span>
+          </div>
+          <span
+            className="grommetux-value__label">
+            Total
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      className="grommetux-box grommetux-box--direction-column grommetux-box--responsive grommetux-box--basis-2-3 grommetux-box--pad-medium"
+      id={undefined}
+      onClick={undefined}
+      role={undefined}
+      style={Object {}}
+      tabIndex={undefined}>
+      <h3
+        className="grommetux-heading">
+        My Tasks2
+      </h3>
+      <ul
+        className="grommetux-list"
+        role="list" />
+      <div
+        className="grommetux-box grommetux-box--direction-column grommetux-box--align-start grommetux-box--responsive grommetux-box--pad-vertical-large"
+        id={undefined}
+        onClick={undefined}
+        role={undefined}
+        style={Object {}}
+        tabIndex={undefined}>
+        <button
+          aria-label={undefined}
+          className="grommetux-button grommetux-button--primary"
+          disabled={false}
+          href={undefined}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onMouseDown={[Function]}
+          onMouseUp={[Function]}
+          type="button">
+          <span
+            className="grommetux-button__label">
+            Add Task
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+`;

@@ -10,7 +10,7 @@ import Heading from 'grommet/components/Heading';
 import Layer from 'grommet/components/Layer';
 
 export default class TodoAddTaskForm extends Component {
-  constructor () {
+  constructor() {
     super();
 
     this._onSubmit = this._onSubmit.bind(this);
@@ -23,7 +23,7 @@ export default class TodoAddTaskForm extends Component {
     };
   }
 
-  _onSubmit (event) {
+  _onSubmit(event) {
     event.preventDefault();
     if (this.state.label) {
       this.props.onSubmit({
@@ -33,41 +33,41 @@ export default class TodoAddTaskForm extends Component {
     }
   }
 
-  _onLabelChange (event) {
+  _onLabelChange(event) {
     this.setState({ label: event.target.value });
   }
 
-  _onStatusChange (event) {
+  _onStatusChange(event) {
     this.setState({ status: event.target.value });
   }
 
-  render () {
+  render() {
     return (
-      <Layer align="right" closer={true} onClose={this.props.onClose}>
-        <Header pad={{vertical: 'large'}}>
+      <Layer align='right' closer={true} onClose={this.props.onClose}>
+        <Header pad={{ vertical: 'large' }}>
           <Heading>Add Task</Heading>
         </Header>
         <Form onSubmit={this._onSubmit}>
           <FormFields>
             <fieldset>
-              <FormField label="Task" htmlFor="labelId">
-                <input type="text" name="label" id="labelId"
+              <FormField label='Task' htmlFor='labelId'>
+                <input type='text' name='label' id='labelId'
                   onChange={this._onLabelChange} />
               </FormField>
-              <FormField label="Status" htmlFor="statusId">
-                <select name="status" id="statusId"
+              <FormField label='Status' htmlFor='statusId'>
+                <select name='status' id='statusId'
                   onChange={this._onStatusChange}>
-                  <option value="ok">Done</option>
-                  <option value="warning">Warning</option>
-                  <option value="critical">Past Due</option>
+                  <option value='ok'>Done</option>
+                  <option value='warning'>Warning</option>
+                  <option value='critical'>Past Due</option>
                 </select>
               </FormField>
             </fieldset>
           </FormFields>
         </Form>
-        <Footer pad={{vertical: 'large'}}>
-          <Button primary={true} type="submit"
-            label="Add" onClick={this._onSubmit} />
+        <Footer pad={{ vertical: 'large' }}>
+          <Button primary={true} type='submit'
+            label='Add' onClick={this._onSubmit} />
         </Footer>
       </Layer>
     );
@@ -75,5 +75,6 @@ export default class TodoAddTaskForm extends Component {
 }
 
 TodoAddTaskForm.propTypes = {
-  onClose: PropTypes.func.isRequired
+  onClose: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired
 };
