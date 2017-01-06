@@ -36,6 +36,7 @@
     "node-sass": "^4.1.1",
     "pre-commit": "^1.2.2",
     "react-dev-utils": "^0.4.2",
+    "react-hot-loader": "v3.0.0-beta.6",
     "react-test-renderer": "^15.4.1",
     "sass-lint": "^1.10.2",
     "sass-loader": "^4.1.1",
@@ -58,7 +59,11 @@
     ]
   },
   "scripts": {
-    "check": "grommet check"
+    "test": "grommet check",
+    "dev": "NODE_ENV=development grommet pack",
+    "dist": "grommet pack"
   },
-  "pre-commit": ["check"]
+  "pre-commit": [
+    "test"
+  ]
 }

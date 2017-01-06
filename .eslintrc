@@ -28,6 +28,7 @@
     "no-tabs": 0,
     "no-underscore-dangle": 0,
     "comma-dangle": 0,
-    "no-return-assign": 0
+    "no-return-assign": 0,
+    "global-require": 0
   }
 }

@@ -105,7 +105,8 @@ export default class TodoAppDashboard extends Component {
       return (
         <ListItem key={`task_${index}`} justify='between'
           separator={separator} responsive={false}>
-          <Box>
+          <Box direction='row' responsive={false}
+            pad={{ between: 'small' }}>
             <Status value={task.status} size='small' />
             <span>{task.label}</span>
           </Box>
