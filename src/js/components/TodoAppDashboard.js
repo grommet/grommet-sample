@@ -1,6 +1,6 @@
 // (C) Copyright 2014-2015 Hewlett-Packard Development Company, L.P.
 
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import Box from 'grommet/components/Box';
 import Button from 'grommet/components/Button';
@@ -20,9 +20,36 @@ function getLabel(label, value, colorIndex) {
   return { label, value, colorIndex };
 }
 
+class DeleteTaskButton extends Component {
+  constructor() {
+    super();
+    this._onClick = this._onClick.bind(this);
+  }
+
+  _onClick() {
+    const { task, onDelete } = this.props;
+    onDelete(task);
+  }
+
+  render() {
+    const { task } = this.props;
+    return (
+      <Button plain={true}
+        onClick={this._onClick}
+        icon={<CloseIcon />}
+        a11yTitle={`Delete ${task.item} task`} />
+    );
+  }
+}
+
+DeleteTaskButton.propTypes = {
+  task: PropTypes.object.isRequired,
+  onDelete: PropTypes.func.isRequired
+};
+
 export default class TodoAppDashboard extends Component {
 
-  constructor () {
+  constructor() {
     super();
 
     this._onRequestForAdd = this._onRequestForAdd.bind(this);
@@ -36,36 +63,39 @@ export default class TodoAppDashboard extends Component {
     };
   }
 
-  _onRequestForAdd () {
-    this.setState({addTask: true});
+  _onRequestForAdd() {
+    this.setState({ addTask: true });
   }
 
-  _onRequestForAddClose () {
-    this.setState({addTask: false});
+  _onRequestForAddClose() {
+    this.setState({ addTask: false });
   }
 
-  _onRequestForDelete (index) {
-    let tasks = this.state.tasks;
+  _onRequestForDelete(task) {
+    const { tasks } = this.state;
+    const index = this.state.tasks.indexOf(task);
     tasks.splice(index, 1);
-    this.setState({tasks: tasks});
+    this.setState({ tasks });
   }
 
-  _onAddTask (task) {
-    let tasks = this.state.tasks;
+  _onAddTask(task) {
+    const tasks = this.state.tasks;
     tasks.push(task);
-    this.setState({tasks: tasks, addTask: false});
+    this.setState({ tasks, addTask: false });
   }
 
-  render () {
+  _onMeterActive(index) {
+    this.setState({ index });
+  }
 
-    let tasksMap = {
+  render() {
+    const tasksMap = {
       critical: 0,
       ok: 0,
       warning: 0
     };
 
-    let tasks = this.state.tasks.map((task, index) => {
-
+    const tasks = this.state.tasks.map((task, index) => {
       tasksMap[task.status] += 1;
 
       let separator;
@@ -75,14 +105,12 @@ export default class TodoAppDashboard extends Component {
       return (
         <ListItem key={`task_${index}`} justify='between'
           separator={separator} responsive={false}>
-          <Box>
+          <Box direction='row' responsive={false}
+            pad={{ between: 'small' }}>
             <Status value={task.status} size='small' />
             <span>{task.label}</span>
           </Box>
-          <Button plain={true}
-            onClick={this._onRequestForDelete.bind(this, index)}
-            icon={<CloseIcon />}
-            a11yTitle={`Delete ${task.item} task`} />
+          <DeleteTaskButton task={task} onDelete={this._onRequestForDelete} />
         </ListItem>
       );
     }, this);
@@ -101,7 +129,8 @@ export default class TodoAppDashboard extends Component {
       getLabel('Done', tasksMap.ok, 'ok')
     ];
 
-    let value, label;
+    let value;
+    let label;
     if (this.state.index >= 0) {
       value = series[this.state.index].value;
       label = series[this.state.index].label;
@@ -114,12 +143,12 @@ export default class TodoAppDashboard extends Component {
     return (
       <Section primary={true} flex={true}>
         <Box direction='row'>
-          <Box basis='1/3' align="center">
-            <Meter series={series} type="circle" label={false}
-              onActive={(index) => this.setState({ index: index })} />
-            <Box direction="row" justify="between" align="center"
+          <Box basis='1/3' align='center'>
+            <Meter series={series} type='circle' label={false}
+              onActive={this._onMeterActive} />
+            <Box direction='row' justify='between' align='center'
               responsive={false}>
-              <Value value={value} units="Tasks" align="center" label={label} />
+              <Value value={value} units='Tasks' align='center' label={label} />
             </Box>
           </Box>
           <Box basis='2/3' pad='medium'>
@@ -128,7 +157,7 @@ export default class TodoAppDashboard extends Component {
               {tasks}
             </List>
             <Box pad={{ vertical: 'large' }} align='start'>
-              <Button label="Add Task" primary={true}
+              <Button label='Add Task' primary={true}
                 onClick={this._onRequestForAdd} />
             </Box>
           </Box>
