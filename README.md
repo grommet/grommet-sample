@@ -5,17 +5,23 @@ This is the source code for the grommet sample app. To run the website execute t
   1. Install NPM modules:
 
       ```
-      $ npm install
+      $ npm install (or yarn install)
       ```
 
   2. Start the development server:
 
       ```
-      $ gulp dev
+      $ npm run dev
       ```
 
   3. Create the app distribution:
 
       ```
-      $ gulp dist
+      $ npm run dist
+      ```
+    
+  4. Check linting issues and run tests
+
+      ```
+      $ npm run check
       ```
