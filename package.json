@@ -27,6 +27,7 @@
     "babel-preset-react": "^6.16.0",
     "babel-preset-react-hmre": "^1.1.1",
     "babel-register": "^6.18.0",
+    "copy-webpack-plugin": "^4.0.1",
     "cross-env": "^3.1.4",
     "eslint": "^3.9.1",
     "eslint-config-airbnb": "^13.0.0",
@@ -35,14 +36,14 @@
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.6.0",
     "file-loader": "^0.9.0",
-    "grommet-cli": "^2.1.0",
+    "grommet-cli": "^3.0.0",
     "node-sass": "^4.1.1",
     "pre-commit": "^1.2.2",
     "react-dev-utils": "^0.4.2",
     "react-test-renderer": "^15.4.1",
     "sass-lint": "^1.10.2",
     "sass-loader": "^4.1.1",
-    "webpack": "^1.14.0"
+    "webpack": "^2.2.1"
   },
   "jest": {
     "collectCoverage": true,
@@ -63,7 +64,7 @@
   "scripts": {
     "test": "grommet check",
     "dev": "cross-env NODE_ENV=development grommet pack",
-    "dist": "grommet pack"
+    "dist": "cross-env NODE_ENV=production grommet pack"
   },
   "pre-commit": [
     "test"

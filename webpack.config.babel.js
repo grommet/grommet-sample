@@ -1,27 +1,44 @@
 import path from 'path';
 import webpack from 'webpack';
-import WatchMissingNodeModulesPlugin from
-  'react-dev-utils/WatchMissingNodeModulesPlugin';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
 
 const env = process.env.NODE_ENV || 'production';
 
 let plugins = [
+  new CopyWebpackPlugin([{ from: './public' }]),
   new webpack.DefinePlugin({
     'process.env': {
       NODE_ENV: JSON.stringify(env)
     }
-  }),
-  new webpack.optimize.OccurrenceOrderPlugin()
-  // new webpack.optimize.DedupePlugin()
+  })
 ];
+
+const loaderOptionsConfig = {
+  options: {
+    sassLoader: {
+      includePaths: [
+        './node_modules'
+      ]
+    }
+  }
+};
 
 const devConfig = {};
 if (env === 'production') {
+  loaderOptionsConfig.minimize = true;
   plugins.push(
     new webpack.optimize.UglifyJsPlugin({
       compress: {
+        warnings: false,
         screw_ie8: true,
-        warnings: false
+        conditionals: true,
+        unused: true,
+        comparisons: true,
+        sequences: true,
+        dead_code: true,
+        evaluate: true,
+        if_return: true,
+        join_vars: true,
       },
       mangle: {
         screw_ie8: true
@@ -34,15 +51,28 @@ if (env === 'production') {
   );
 } else {
   plugins = plugins.concat([
-    new webpack.HotModuleReplacementPlugin(),
-    new WatchMissingNodeModulesPlugin('./node_modules')
+    new webpack.HotModuleReplacementPlugin()
   ]);
   devConfig.devtool = 'cheap-module-source-map';
   devConfig.entry = [
     require.resolve('react-dev-utils/webpackHotDevClient'),
     './src/js/index.js'
   ];
+  devConfig.devServer = {
+    compress: true,
+    clientLogLevel: 'none',
+    contentBase: path.resolve('./dist'),
+    publicPath: '/',
+    quiet: true,
+    hot: true,
+    watchOptions: {
+      ignored: /node_modules/
+    },
+    historyApiFallback: true
+  };
 }
+
+plugins.push(new webpack.LoaderOptionsPlugin(loaderOptionsConfig));
 
 export default Object.assign({
   entry: './src/js/index.js',
@@ -52,7 +82,7 @@ export default Object.assign({
     publicPath: '/'
   },
   resolve: {
-    extensions: ['', '.js', '.scss', '.css']
+    extensions: ['.js', '.scss', '.css', '.json']
   },
   plugins,
   node: {
@@ -61,21 +91,19 @@ export default Object.assign({
     tls: 'empty'
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js/,
         exclude: /node_modules/,
-        loaders: ['babel']
+        loader: 'babel-loader'
       },
       {
         test: /\.scss$/,
-        loader: 'file?name=[name].css!sass?outputStyle=compressed'
+        use: [
+          { loader: 'file-loader', options: { name: '[name].css' } },
+          { loader: 'sass-loader', options: { outputStyle: 'compressed' } }
+        ]
       }
-    ]
-  },
-  sassLoader: {
-    includePaths: [
-      './node_modules'
     ]
   }
 }, devConfig);

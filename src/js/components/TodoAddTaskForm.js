@@ -1,13 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 
-import Button from 'grommet/components/Button';
-import Footer from 'grommet/components/Footer';
-import Form from 'grommet/components/Form';
-import FormField from 'grommet/components/FormField';
-import FormFields from 'grommet/components/FormFields';
-import Header from 'grommet/components/Header';
-import Heading from 'grommet/components/Heading';
-import Layer from 'grommet/components/Layer';
+import {
+  Button, Footer, Form, FormField, FormFields, Header, Heading, Layer
+} from 'grommet';
 
 export default class TodoAddTaskForm extends Component {
   constructor() {
