@@ -23,5 +23,5 @@ This is the source code for the grommet sample app. To run the website execute t
   4. Check linting issues and run tests
 
       ```
-      $ npm run check
+      $ npm run test
       ```
