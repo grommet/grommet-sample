@@ -16,8 +16,9 @@
   },
   "dependencies": {
     "grommet": "https://github.com/grommet/grommet/tarball/stable",
-    "react": "^15.0.2",
-    "react-dom": "^15.0.2"
+    "grommet-addons": "https://github.com/grommet/grommet-addons/tarball/stable",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.5.2",
@@ -39,8 +40,8 @@
     "grommet-cli": "^3.0.0",
     "node-sass": "^4.1.1",
     "pre-commit": "^1.2.2",
-    "react-dev-utils": "^0.4.2",
-    "react-test-renderer": "^15.4.1",
+    "react-dev-utils": "^4.1.0",
+    "react-test-renderer": "^16.0.0",
     "sass-lint": "^1.10.2",
     "sass-loader": "^4.1.1",
     "webpack": "^2.2.1"
@@ -64,6 +65,7 @@
   "scripts": {
     "test": "grommet check",
     "dev": "cross-env NODE_ENV=development grommet pack",
+    "dev-alias": "cross-env NODE_ENV=development USE_ALIAS=true grommet pack",
     "dist": "cross-env NODE_ENV=production grommet pack"
   },
   "pre-commit": [
