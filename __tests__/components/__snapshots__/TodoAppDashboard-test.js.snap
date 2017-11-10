@@ -161,14 +161,16 @@ exports[`test TodoAppDashboard renders 1`] = `
           className="grommetux-value grommetux-value--align-center">
           <div
             className="grommetux-value__annotated">
-            <span
-              className="grommetux-value__value">
-              0
-            </span>
-            <span
-              className="grommetux-value__units">
-              Tasks
-            </span>
+            <div>
+              <span
+                className="grommetux-value__value">
+                0
+              </span>
+              <span
+                className="grommetux-value__units">
+                Tasks
+              </span>
+            </div>
           </div>
           <span
             className="grommetux-value__label">
