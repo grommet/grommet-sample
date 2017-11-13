@@ -17,6 +17,7 @@
   "dependencies": {
     "grommet": "https://github.com/grommet/grommet/tarball/stable",
     "grommet-addons": "https://github.com/grommet/grommet-addons/tarball/stable",
+    "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0"
   },
