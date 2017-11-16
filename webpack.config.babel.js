@@ -3,6 +3,7 @@ import webpack from 'webpack';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 
 const env = process.env.NODE_ENV || 'production';
+const useAlias = process.env.USE_ALIAS;
 
 let plugins = [
   new CopyWebpackPlugin([{ from: './public' }]),
@@ -23,6 +24,7 @@ const loaderOptionsConfig = {
   }
 };
 
+let alias;
 const devConfig = {};
 if (env === 'production') {
   loaderOptionsConfig.minimize = true;
@@ -70,6 +72,15 @@ if (env === 'production') {
     },
     historyApiFallback: true
   };
+  if (useAlias) {
+    console.log('Using alias to local grommet.');
+    alias = {
+      'grommet-addons': path.resolve(__dirname, '../grommet-addons/src/js'),
+      'grommet-icons': path.resolve(__dirname, '../grommet-icons/src/js'),
+      'grommet/scss': path.resolve(__dirname, '../grommet/src/scss'),
+      'grommet': path.resolve(__dirname, '../grommet/src/js')
+    };
+  }
 }
 
 plugins.push(new webpack.LoaderOptionsPlugin(loaderOptionsConfig));
@@ -82,6 +93,7 @@ export default Object.assign({
     publicPath: '/'
   },
   resolve: {
+    alias,
     extensions: ['.js', '.scss', '.css', '.json']
   },
   plugins,
