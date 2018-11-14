@@ -11,7 +11,7 @@ This is the source code for the grommet sample app. To run the website execute t
   2. Start the development server:
 
       ```
-      $ npm run dev
+      $ npm run start
       ```
 
   3. Create the app distribution:

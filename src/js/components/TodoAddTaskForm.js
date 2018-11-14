@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Button from 'grommet/components/Button';
-import Footer from 'grommet/components/Footer';
-import Form from 'grommet/components/Form';
-import FormField from 'grommet/components/FormField';
-import FormFields from 'grommet/components/FormFields';
-import Header from 'grommet/components/Header';
-import Heading from 'grommet/components/Heading';
-import Layer from 'grommet/components/Layer';
+import {
+  Box,
+  Button,
+  FormField,
+  Heading,
+  Layer,
+  TextArea,
+  Select,
+} from 'grommet';
+
+import { Close } from 'grommet-icons';
 
 export default class TodoAddTaskForm extends Component {
   constructor() {
@@ -22,14 +25,22 @@ export default class TodoAddTaskForm extends Component {
       label: undefined,
       status: undefined
     };
+
+    this.selectMapToValue = {
+      'Done': 'ok',
+      'Warning': 'warning',
+      'Past Due': 'critical'
+    };
   }
 
   _onSubmit(event) {
     event.preventDefault();
+    console.log(this.state.label);
     if (this.state.label) {
+      console.log(this.state.status.value);
       this.props.onSubmit({
         label: this.state.label,
-        status: this.state.status || 'ok'
+        status: this.selectMapToValue[this.state.status.value] || 'ok'
       });
     }
   }
@@ -38,38 +49,46 @@ export default class TodoAddTaskForm extends Component {
     this.setState({ label: event.target.value });
   }
 
-  _onStatusChange(event) {
-    this.setState({ status: event.target.value });
+  _onStatusChange(option) {
+    this.setState({ status: option });
   }
 
   render() {
     return (
-      <Layer align='right' closer={true} onClose={this.props.onClose}>
-        <Header pad={{ vertical: 'large' }}>
-          <Heading>Add Task</Heading>
-        </Header>
-        <Form onSubmit={this._onSubmit}>
-          <FormFields>
-            <fieldset>
+      <Layer position='right' full='vertical' modal
+        onClickOutside={this.props.onClose} onClose={this.props.onClose}>
+        <Box pad='large'>
+          <Box tag='header' justify='between' direction='row' pad={{ vertical: 'medium' }} >
+            <Heading level='3'>Add Task</Heading>
+            <Button icon={<Close />} onClick={this.onClose} />
+          </Box>
+          <form onSubmit={this._onSubmit}>
+            <Box border='top,left' pad='small'>
               <FormField label='Task' htmlFor='labelId'>
-                <input type='text' name='label' id='labelId'
-                  onChange={this._onLabelChange} />
+                <TextArea
+                  id='labelId'
+                  name='label'
+                  onChange={this._onLabelChange}
+                />
               </FormField>
+            </Box>
+            <Box border='top,left' pad='small'>
               <FormField label='Status' htmlFor='statusId'>
-                <select name='status' id='statusId'
-                  onChange={this._onStatusChange}>
-                  <option value='ok'>Done</option>
-                  <option value='warning'>Warning</option>
-                  <option value='critical'>Past Due</option>
-                </select>
+                <Select
+                  id='select'
+                  placeholder='Select'
+                  value={this.state.status}
+                  options={['Done', 'Warning', 'Past Due']}
+                  onChange={this._onStatusChange}
+                />
               </FormField>
-            </fieldset>
-          </FormFields>
-        </Form>
-        <Footer pad={{ vertical: 'large' }}>
-          <Button primary={true} type='submit'
-            label='Add' onClick={this._onSubmit} />
-        </Footer>
+            </Box>
+          </form>
+          <Box pad={{ vertical: 'large' }} align='start' tag='footer'>
+            <Button type='submit'
+              label='Add' onClick={this._onSubmit} />
+          </Box>
+        </Box>
       </Layer>
     );
   }

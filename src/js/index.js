@@ -1,5 +1,3 @@
-import '../scss/index';
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 

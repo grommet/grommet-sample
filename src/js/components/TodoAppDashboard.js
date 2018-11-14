@@ -3,22 +3,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Box from 'grommet/components/Box';
-import Button from 'grommet/components/Button';
-import Heading from 'grommet/components/Heading';
-import Meter from 'grommet/components/Meter';
-import Section from 'grommet/components/Section';
-import List from 'grommet/components/List';
-import ListItem from 'grommet/components/ListItem';
-import Value from 'grommet/components/Value';
+import {
+  Box,
+  Button,
+  Meter,
+  Text
+} from 'grommet';
 
-import Status from 'grommet/components/icons/Status';
-import CloseIcon from 'grommet/components/icons/base/Close';
+import { Close, StatusCriticalSmall, StatusGoodSmall, StatusWarningSmall } from 'grommet-icons';
 
 import TodoAddTaskForm from './TodoAddTaskForm';
 
-function getLabel(label, value, colorIndex) {
-  return { label, value, colorIndex };
+function getLabel(label, value, color) {
+  return { label, value, color };
 }
 
 class DeleteTaskButton extends Component {
@@ -37,7 +34,7 @@ class DeleteTaskButton extends Component {
     return (
       <Button plain={true}
         onClick={this._onClick}
-        icon={<CloseIcon />}
+        icon={<Close />}
         a11yTitle={`Delete ${task.item} task`} />
     );
   }
@@ -47,6 +44,41 @@ DeleteTaskButton.propTypes = {
   task: PropTypes.object.isRequired,
   onDelete: PropTypes.func.isRequired
 };
+
+const List = props => <Box fill tag='ul' border='top' {...props} />;
+
+const ListItem = props => (
+  <Box
+    align='center'
+    tag='li'
+    direction='row'
+    {...props}
+  />
+);
+
+const Critical = props => (
+  <StatusCriticalSmall
+    color='status-critical'
+    size='small'
+    {...props}
+  />
+);
+
+const Warning = props => (
+  <StatusWarningSmall
+    color='status-warning'
+    size='small'
+    {...props}
+  />
+);
+
+const Good = props => (
+  <StatusGoodSmall
+    color='status-ok'
+    size='small'
+    {...props}
+  />
+);
 
 export default class TodoAppDashboard extends Component {
 
@@ -96,22 +128,29 @@ export default class TodoAppDashboard extends Component {
       warning: 0
     };
 
+    const statusIcons = {
+      'critical': Critical,
+      'warning': Warning,
+      'ok': Good
+    };
+
     const tasks = this.state.tasks.map((task, index) => {
+      console.log(tasks);
       tasksMap[task.status] += 1;
 
-      let separator;
-      if (index === 0) {
-        separator = 'horizontal';
-      }
       return (
         <ListItem key={`task_${index}`} justify='between'
-          separator={separator} responsive={false}>
-          <Box direction='row' responsive={false}
-            pad={{ between: 'small' }}>
-            <Status value={task.status} size='small' />
-            <span>{task.label}</span>
+          border='horizontal' responsive={false}>
+          <Box direction='row' justify='between' fill responsive={false}
+            pad='small' align='center'>
+            <Box direction='row' align='center' gap='small'>
+              {statusIcons[task.status]()}
+              <span>{task.label}</span>
+            </Box>
+            <Box align='end'>
+              <DeleteTaskButton task={task} onDelete={this._onRequestForDelete} />
+            </Box>
           </Box>
-          <DeleteTaskButton task={task} onDelete={this._onRequestForDelete} />
         </ListItem>
       );
     }, this);
@@ -125,9 +164,9 @@ export default class TodoAppDashboard extends Component {
     }
 
     const series = [
-      getLabel('Past Due', tasksMap.critical, 'critical'),
-      getLabel('Due Soon', tasksMap.warning, 'warning'),
-      getLabel('Done', tasksMap.ok, 'ok')
+      getLabel('Past Due', tasksMap.critical, 'status-critical'),
+      getLabel('Due Soon', tasksMap.warning, 'status-warning'),
+      getLabel('Done', tasksMap.ok, 'status-ok')
     ];
 
     let value;
@@ -141,30 +180,32 @@ export default class TodoAppDashboard extends Component {
       label = 'Total';
     }
 
+
     return (
-      <Section primary={true} flex={true}>
+      <Box tag='section'>
         <Box direction='row'>
           <Box basis='1/3' align='center'>
-            <Meter series={series} type='circle' label={false}
-              onActive={this._onMeterActive} />
+            <Meter values={series} type='circle' size='small' background='light-2' />
             <Box direction='row' justify='between' align='center'
               responsive={false}>
-              <Value value={value} units='Tasks' align='center' label={label} />
+              <Box full align='center' justify='between' pad='small' >
+                <Text size='xlarge'> {value} Tasks </Text>
+                <Text> {label} </Text>
+              </Box>
             </Box>
           </Box>
-          <Box basis='2/3' pad='medium'>
-            <Heading tag='h3'>My Tasks</Heading>
+          <Box pad='medium' basis='2/3'>
+            <Text margin={{ vertical: 'small' }} size='large'>My Tasks</Text>
             <List>
-              {tasks}
+              {tasks.map(task => (task))}
             </List>
-            <Box pad={{ vertical: 'large' }} align='start'>
-              <Button label='Add Task' primary={true}
-                onClick={this._onRequestForAdd} />
+            <Box pad={{ vertical: 'large' }} align='start' flex={false}>
+              <Button label='Add Task' background='brand' onClick={this._onRequestForAdd} />
             </Box>
           </Box>
         </Box>
         {addTask}
-      </Section>
+      </Box>
     );
   }
 }
