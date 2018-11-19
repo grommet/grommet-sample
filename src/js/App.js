@@ -1,30 +1,33 @@
 import React, { Component } from 'react';
-import App from 'grommet/components/App';
-import Box from 'grommet/components/Box';
-import Anchor from 'grommet/components/Anchor';
-import Header from 'grommet/components/Header';
-import Footer from 'grommet/components/Footer';
-import Title from 'grommet/components/Title';
+
+import {
+  Anchor,
+  Box,
+  Grommet,
+  Text
+} from 'grommet';
+
 import TodoAppDashboard from './components/TodoAppDashboard';
+import { v1 } from 'grommet-theme-v1';
 
 export default class SampleApp extends Component {
   render() {
     return (
-      <App centered={false}>
-        <Box full={true}>
-          <Header direction='row' justify='between'
-            pad={{ horizontal: 'medium' }}>
-            <Title>Todo App</Title>
-          </Header>
-          <TodoAppDashboard />
-          <Footer primary={true} appCentered={true} direction='column'
-            align='center' pad='small' colorIndex='grey-1'>
+      <Grommet full={true} theme={v1}>
+        <Box fill justify='between' direction='column'>
+          <Box>
+            <Box tag='header' direction='row' pad='medium'>
+              <Text size='large' weight='bold'>Todo App</Text>
+            </Box>
+            <TodoAppDashboard />
+          </Box>
+          <Box tag='footer' direction='column' align='center' background='black' pad={{ vertical: 'medium' }} >
             <p>
               Build your ideas with <Anchor href='http://grommet.io' target='_blank'>Grommet</Anchor>!
             </p>
-          </Footer>
+          </Box>
         </Box>
-      </App>
+      </Grommet>
     );
   }
 }
