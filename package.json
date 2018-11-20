@@ -15,7 +15,7 @@
     "url": "https://github.com/grommet/grommet-sample.git"
   },
   "dependencies": {
-    "grommet": "https://github.com/grommet/grommet/tarball/stable",
+    "grommet": "^1.0.0",
     "grommet-addons": "https://github.com/grommet/grommet-addons/tarball/stable",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
