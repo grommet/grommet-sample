@@ -25,3 +25,5 @@ This is the source code for the grommet sample app. To run the website execute t
       ```
       $ npm run test
       ```
+
+![Grommet Sample Screenshot](https://raw.githubusercontent.com/jensy/images/master/grommet-sample.png)
